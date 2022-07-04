@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import './Items.css'
+// context components
+import {useFurnitureContext} from '../components/hooks/useFurnitureContext';
+
+// components
+import Itemdetails from '../components/Itemdetails';
 
 const Items = () => {
-    const [items,setItems] = useState(null)
+    // const [items,setItems] = useState(null)
+    const { items, dispatch } = useFurnitureContext()  
 
     useEffect( () =>{
         const furn = async () => {
@@ -10,7 +17,8 @@ const Items = () => {
             const json = await response.json()
 
             if( response.ok ){ // if no error in api
-                setItems(json)
+                dispatch({ type: 'SET_FURNITURE', payload: json })
+                // setItems(json)
             }
         }
 
@@ -19,16 +27,15 @@ const Items = () => {
 
     return ( 
         <div className="home">
-        <h3>Furniture Categories</h3>
+        <h3>Furniture Items</h3>
         <br />
-        <div className="workouts">
+        <div className="items">
             {items && items.map( (item) => (
-                <p  key={item._id}>{ item.imageName }</p>
-                // <Itemdetails key={items._id} item = { items } />
+                <Itemdetails key={item._id} item = { item } />
             ) )}
         </div>
     </div>
-     );
+     );   
 }
  
 export default Items;

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { useCategoriesContext } from "../components/hooks/useCategoriesContext";
 
 const FurnitureForm = () => {
-    const [categories,setCategories] = useState(null)
+    const { categories, dispatch } = useCategoriesContext()  
 
     useEffect( () =>{
         const category = async () => {
@@ -11,7 +12,7 @@ const FurnitureForm = () => {
             const json = await response.json()
 
             if( response.ok ){ // if no error in api
-                setCategories(json)
+                dispatch({ type: 'SET_CATEGORY', payload: json })
             }
         }
 
@@ -38,7 +39,7 @@ const FurnitureForm = () => {
 		formData.append('file', selectedFile);
 
         
-        const response = await fetch('/furniture', {
+        const response = await fetch('http://localhost:3000/furniture', {
             method: 'POST',
             body: formData,
         })
