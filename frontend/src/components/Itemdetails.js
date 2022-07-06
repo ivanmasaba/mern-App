@@ -1,35 +1,49 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCategoriesContext } from "../components/hooks/useCategoriesContext";
+import { useFurnitureContext } from "../components/hooks/useFurnitureContext";
 import './Itemdetails.css'
 
 const Itemdetails = ({ item }) => {
-    const { categories, dispatch } = useCategoriesContext()  
+    const { dispatch } = useFurnitureContext() 
+    const [image, setImage] = useState(null)
 
-    useEffect( () =>{
-        const furniture = async () => {
-            const response = await fetch('/category/')
-            // const response = await fetch('/furniture/')
+    /****** GET IMAGE FROM DB ***** */
+    const getImage = async (imageId) => {   
+    const res = await fetch('http://localhost:3000'+imageId)
+    const imageBlob = await res.blob()    
+        // Then create a local URL for that image and print it 
+    const imageObjectURL = URL.createObjectURL(imageBlob);
+        setImage(imageObjectURL);   
+    }
+    /****** RUN THE IMAGE METHOD ***** */
+    useEffect( () => {
+        getImage( item.ImagePathe ) 
+    }, [])
 
-            const json = await response.json()
+    /**********  DELETE AN ITEM *********** */
+    const handleDelete = async () => {
+        const res = await fetch('http://localhost:3000/furniture/' + item._id, {
+            method: 'DELETE'
+        } )
+        const json = await res.json()
 
-            if( response.ok ){ // if no error in api
-                dispatch({ type: 'SET_CATEGORY', payload: json })
-                // setFurnitures(json)
-            }
+        if(res.ok){
+            dispatch({ type: 'DELETE_ITEM', payload: json })
         }
-
-        furniture()
-    },[] )
+    }
 
     return ( 
         <div className="title">
-            <h4>{ item.name }</h4>
-            <div className='describe'>
-            <p><strong>Category: </strong> { item.categoryID }</p>
-             <p><strong>Description: </strong> { item.description }</p>
-             <p><strong>Description: </strong> { item.imageName }</p>
-            </div>
+            {/* <h4>{ item.name }</h4> */}
+            {/* <div className='describe'> */}
+            {/* <p><strong>Category: </strong> { item.ImagePathe }</p> */}
+             {/* <p><strong>Description: </strong> { item.description }</p> */}
+             {/* <p><strong>Item Name: </strong> { item.imageName }</p> */}
+                 
+                <img src={image} alt="ok" /> 
             
+            {/* </div> */}
+            <span className='material-symbols-outlined' onClick={handleDelete}>delete</span>
         </div>
      );
 }

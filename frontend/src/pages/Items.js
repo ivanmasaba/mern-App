@@ -24,7 +24,7 @@ const Items = () => {
 
         furn()
     },[] )
-
+        
     return ( 
         <div className="home">
         <h3>Furniture Items</h3>
