@@ -3,16 +3,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #141E30;
+    /* background: #141E30; */
     background: -webkit-linear-gradient(to right, #243B55, #141E30);
-    background: linear-gradient(to right, #243B55, #141E30);
+    /* background: linear-gradient(to right, #243B55, #141E30); */
     border-radius: 10px;
-    transition: all 1s ease-in-out;
+    transition: all 0.5s ease-in-out;
     cursor: pointer;
 }
 
 .title:hover{
-    transform: scale(1.1);
+    transform: scale(1.6);
+  }
+
+  img {
+    max-width: 50%;
+    max-height: 50%;
+    background-color: #141E30;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 1px;
+    /* width: 10px; */
   }
 
   .title > img{

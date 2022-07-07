@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Categorydetails = ({ item }) => {
     return ( 
         <div className="workout-details">
-            <h4>{ item.name }</h4>
-            {/* <p><strong>Category: </strong> { item.category }</p> */}
-             {/* <p><strong>Description: </strong> { item.description }</p> */}
+             <Link style={{ textDecoration: "none" }} to={`/categoryItems/${item._id}`}>
+                <h4>{ item.name }</h4>
+             </Link>
         </div>
      );
 }

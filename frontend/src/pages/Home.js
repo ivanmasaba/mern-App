@@ -3,7 +3,6 @@ import { useCategoriesContext } from "../components/hooks/useCategoriesContext";
 
 // components
 import Categorydetails from '../components/Categorydetails'
-import CategoryForm from '../components/CategoryForm'
 
 
 const Home = () => {
@@ -30,11 +29,10 @@ const Home = () => {
             <h3>Furniture Categories</h3>
             <br />
             <div className="workouts">
-                {categories && categories.map( (furniture) => (
-                    <Categorydetails key={furniture._id} item = { furniture } />
+                {categories && categories.map( (category) => (
+                    <Categorydetails key={category._id} item = { category } />
                 ) )}
             </div>
-            <CategoryForm />
         </div>
      );
 }

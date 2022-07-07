@@ -7,6 +7,7 @@ import Items from './pages/Items';
 import Navbar from './components/Navbar';
 import CategoryForm from "./components/CategoryForm";
 import FurnitureForm from "./components/furnitureForm";
+import CategoryItems from "./components/CategoryItems"
 
 function App(){
     return ( 
@@ -23,6 +24,11 @@ function App(){
                         <Route 
                             path="/category"
                             element={ <CategoryForm /> }
+                        />
+        
+                        <Route 
+                            path="/categoryItems/:id"
+                            element={ <CategoryItems /> }
                         />
 
                          <Route 

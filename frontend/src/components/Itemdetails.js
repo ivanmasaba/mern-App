@@ -43,7 +43,15 @@ const Itemdetails = ({ item }) => {
                 <img src={image} alt="ok" /> 
             
             {/* </div> */}
-            <span className='material-symbols-outlined' onClick={handleDelete}>delete</span>
+            <div>{ item.name }</div>
+
+            {/* <div>
+            <strong>Item Name: </strong>{ item.name }
+            <br />
+            <strong>Description: </strong> { item.description }
+            </div> */}
+            
+            {/* <span className='material-symbols-outlined' onClick={handleDelete}>delete</span> */}
         </div>
      );
 }

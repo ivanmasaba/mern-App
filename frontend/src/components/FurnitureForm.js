@@ -65,7 +65,7 @@ const FurnitureForm = () => {
                 <div>
                     <label >Category:</label>
                     <select
-                     value=''
+                     value={category}
                      onChange={ (e) => setCategory(e.target.value)}
                      className={emptyFields.includes('description') ? 'error' : '' }
                       > <option value=''></option>
